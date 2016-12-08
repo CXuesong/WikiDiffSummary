@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffMatchPatch", "modules\DiffMatchPatch\DiffMatchPatch\DiffMatchPatch.csproj", "{5DFA1438-CBB4-4A13-9919-C09B9A18B24B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTestApplication1", "WpfTestApplication1\WpfTestApplication1.csproj", "{12E9CF60-2289-4817-9D7A-A81FB8B73515}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5DFA1438-CBB4-4A13-9919-C09B9A18B24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DFA1438-CBB4-4A13-9919-C09B9A18B24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DFA1438-CBB4-4A13-9919-C09B9A18B24B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E9CF60-2289-4817-9D7A-A81FB8B73515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E9CF60-2289-4817-9D7A-A81FB8B73515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E9CF60-2289-4817-9D7A-A81FB8B73515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E9CF60-2289-4817-9D7A-A81FB8B73515}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

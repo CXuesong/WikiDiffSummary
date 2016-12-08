@@ -195,11 +195,14 @@ namespace WikiDiffSummary
         public override string ToString()
         {
             string s;
-            if (Section1.Path == Section2.Path)
+            if (Section1 == null || Section2 == null)
+                s = $"[{(Section1 ?? Section2).Path}]";
+            else if (Section1.Path == Section2.Path)
                 s = $"[{Section1.Path}]";
             else
                 s = $"[{Section1.Path}][{Section2.Path}]";
-            if (AreSameOrIdentical) return s + Status.ToString();
+            s += Status;
+            if (AreSameOrIdentical) return s;
             if (AddedChars > 0) s += " +" + AddedChars;
             if (RemovedChars > 0) s += " -" + RemovedChars;
             return s;

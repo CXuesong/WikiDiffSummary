@@ -73,26 +73,30 @@ namespace WikiDiffSummary
                         i1++;
                         i2++;
                     }
-                    // Otherwise, 1 or more sections have been added / removed.
-                    // We assume we can decide the modifications of sections by the count of sections below the current one.
-                    var sectionsLeft1 = sections1.Count - i1;
-                    var sectionsLeft2 = sections2.Count - i2;
-                    if (sectionsLeft1 == sectionsLeft2)
-                    {
-                        diffs.Add(new SectionDiff(s1, null, 0, s1.Length));
-                        diffs.Add(new SectionDiff(null, s2, s2.Length, 0));
-                        i1++;
-                        i2++;
-                    } else if (sectionsLeft1 < sectionsLeft2)
-                    {
-                        diffs.Add(new SectionDiff(null, s2, s2.Length, 0));
-                        i2++;
-                    }
                     else
                     {
-                        // sectionsLeft1 > sectionsLeft2
-                        diffs.Add(new SectionDiff(s1, null, 0, s1.Length));
-                        i1++;
+                        // Otherwise, 1 or more sections have been added / removed.
+                        // We assume we can decide the modifications of sections by the count of sections below the current one.
+                        var sectionsLeft1 = sections1.Count - i1;
+                        var sectionsLeft2 = sections2.Count - i2;
+                        if (sectionsLeft1 == sectionsLeft2)
+                        {
+                            diffs.Add(new SectionDiff(s1, null, 0, s1.Length));
+                            diffs.Add(new SectionDiff(null, s2, s2.Length, 0));
+                            i1++;
+                            i2++;
+                        }
+                        else if (sectionsLeft1 < sectionsLeft2)
+                        {
+                            diffs.Add(new SectionDiff(null, s2, s2.Length, 0));
+                            i2++;
+                        }
+                        else
+                        {
+                            // sectionsLeft1 > sectionsLeft2
+                            diffs.Add(new SectionDiff(s1, null, 0, s1.Length));
+                            i1++;
+                        }
                     }
                 }
             }
