@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,21 +9,30 @@ using MwParserFromScratch.Nodes;
 
 namespace WikiDiffSummary
 {
-    public enum SectionDiffType
+    public enum SectionDiffStatus
     {
         /// <summary>
         /// The is a new section.
         /// </summary>
-        Append,
+        Added,
         /// <summary>
         /// The section has been removed.
         /// </summary>
-        Delete,
+        Removed,
         /// <summary>
         /// The section has been modified.
         /// </summary>
-        Modify
+        Modified,
+        /// <summary>
+        /// The section has hardly been modified.
+        /// </summary>
+        Same,
+        /// <summary>
+        /// The section has not been modified at all.
+        /// </summary>
+        Identical,
     }
+
 
     /// <summary>
     /// Gets the path consisting of different levels of headings.
@@ -155,8 +165,44 @@ namespace WikiDiffSummary
     /// </summary>
     public class SectionDiff
     {
-        public SectionPath SectionPath { get; }
+        internal SectionDiff(WikitextSection section1, WikitextSection section2, int addedChars, int removedChars, bool identical = false)
+        {
+            Debug.Assert(section1 != null || section2 != null);
+            Section1 = section1;
+            Section2 = section2;
+            AddedChars = addedChars;
+            RemovedChars = removedChars;
+            if (section1 == null) Status = SectionDiffStatus.Removed;
+            else if (section2 == null) Status = SectionDiffStatus.Added;
+            else if (identical) Status = SectionDiffStatus.Identical;
+            else if (addedChars == 0 && removedChars == 0) Status = SectionDiffStatus.Same;
+            else Status = SectionDiffStatus.Modified;
+        }
 
-        public SectionDiffType Type { get; }
+        public WikitextSection Section1 { get; }
+
+        public WikitextSection Section2 { get; }
+
+        public int AddedChars { get; }
+
+        public int RemovedChars { get; }
+
+        public SectionDiffStatus Status { get; }
+
+        public bool AreSameOrIdentical => Status == SectionDiffStatus.Same || Status == SectionDiffStatus.Identical;
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            string s;
+            if (Section1.Path == Section2.Path)
+                s = $"[{Section1.Path}]";
+            else
+                s = $"[{Section1.Path}][{Section2.Path}]";
+            if (AreSameOrIdentical) return s + Status.ToString();
+            if (AddedChars > 0) s += " +" + AddedChars;
+            if (RemovedChars > 0) s += " -" + RemovedChars;
+            return s;
+        }
     }
 }

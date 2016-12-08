@@ -35,6 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\modules\DiffMatchPatch\DiffMatchPatch\DiffMatchPatch.csproj">
+      <Project>{5dfa1438-cbb4-4a13-9919-c09b9a18b24b}</Project>
+      <Name>DiffMatchPatch</Name>
+    </ProjectReference>
     <ProjectReference Include="..\modules\MwParserFromScratch\MwParserFromScratch\MwParserFromScratch.csproj">
       <Project>{daeda93e-e048-4c63-9d9d-7222dc6f8f5a}</Project>
       <Name>MwParserFromScratch</Name>
