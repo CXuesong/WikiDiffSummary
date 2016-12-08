@@ -180,8 +180,8 @@ namespace WikiDiffSummary
             Section2 = section2;
             AddedChars = addedChars;
             RemovedChars = removedChars;
-            if (section1 == null) Status = SectionDiffStatus.Removed;
-            else if (section2 == null) Status = SectionDiffStatus.Added;
+            if (section1 == null) Status = SectionDiffStatus.Added;
+            else if (section2 == null) Status = SectionDiffStatus.Removed;
             else if (identical) Status = SectionDiffStatus.Identical;
             else if (addedChars == 0 && removedChars == 0) Status = SectionDiffStatus.WhitespaceModified;
             else Status = SectionDiffStatus.Modified;
