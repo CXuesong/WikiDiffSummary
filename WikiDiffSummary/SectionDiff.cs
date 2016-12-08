@@ -130,7 +130,12 @@ namespace WikiDiffSummary
         }
 
         /// <inheritdoc />
-        public int Count => _Segments.Count;
+        int ICollection<string>.Count => _Segments.Count;
+
+        /// <summary>
+        /// Gets the count of segments (i.e. headings) consisting the path.
+        /// </summary>
+        public int Length => _Segments.Count;
 
         /// <inheritdoc />
         bool ICollection<string>.IsReadOnly => true;
@@ -150,6 +155,9 @@ namespace WikiDiffSummary
             throw new InvalidOperationException();
         }
 
+        /// <summary>
+        /// Gets the plain text content of a segment (i.e. heading content).
+        /// </summary>
         public string this[int index] => _Segments[index];
 
         /// <inheritdoc />
