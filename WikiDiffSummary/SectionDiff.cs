@@ -183,7 +183,7 @@ namespace WikiDiffSummary
             if (section1 == null) Status = SectionDiffStatus.Removed;
             else if (section2 == null) Status = SectionDiffStatus.Added;
             else if (identical) Status = SectionDiffStatus.Identical;
-            else if (addedChars == 0 && removedChars == 0) Status = SectionDiffStatus.Whitespace;
+            else if (addedChars == 0 && removedChars == 0) Status = SectionDiffStatus.WhitespaceModified;
             else Status = SectionDiffStatus.Modified;
         }
 
@@ -197,7 +197,7 @@ namespace WikiDiffSummary
 
         public SectionDiffStatus Status { get; }
 
-        public bool AreSameOrIdentical => Status == SectionDiffStatus.Whitespace || Status == SectionDiffStatus.Identical;
+        public bool AreSameOrIdentical => Status == SectionDiffStatus.WhitespaceModified || Status == SectionDiffStatus.Identical;
 
         /// <inheritdoc />
         public override string ToString()
