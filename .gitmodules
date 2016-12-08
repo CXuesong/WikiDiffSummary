@@ -1,0 +1,3 @@
+[submodule "modules/MwParserFromScratch"]
+	path = modules/MwParserFromScratch
+	url = https://github.com/CXuesong/MwParserFromScratch
