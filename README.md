@@ -1,12 +1,12 @@
 _For [WikiEdit](https://github.com/CXuesong/WikiEdit), a rudimentary Windows desktop client for MediaWiki sites._
 
-_For [Warriors Wiki](http://warriors.wikia.com), though I've gone too far from the clans, I suppose._
+_For [Warriors Wiki](http://warriors.wikia.com), though I've gone too far from the Clans, I suppose._
 
 # WikiDiffSummary
 
 An automatic wikitext revision comparer. This is a .NET PCL library targeting at .NET Framework 4.5, ASP.NET Core 1.0, Xamarin.iOS, and Xamarin.Android.
 
-For now it can perform by-section diff, and find out the added/removed/modified/renamed sections. However, it cannot recognize the moved section, and the performance is terrible if there're two many differences between the revisions.
+For now it can perform by-section diff, and find out the added/removed/modified/renamed sections. However, it cannot recognize the moved section, for now.
 
 The API is simple, and you can find its usage in `UnitTestProject1`, such as:
 
