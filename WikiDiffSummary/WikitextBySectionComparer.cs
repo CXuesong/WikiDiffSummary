@@ -61,13 +61,23 @@ namespace WikiDiffSummary
                 }
                 else
                 {
-                    // The title of s1 & s2 is different.
+                    // The titles of s1 & s2 are different.
                     // Determine whether the section has been renamed.
-                    var d = Compare(dmp, s1, s2);
-                    var removedRatio = (float) d.RemovedChars/s1.Length;
-                    var addedRatio = (float) d.RemovedChars/s2.Length;
-                    if (addedRatio < SectionResemblanceThreshold && removedRatio < SectionResemblanceThreshold)
+                    // If we can judge the resemblance simply by length, we'll not perform expensive diff.
+                    var resemble = Math.Abs((float) (s1.Length - s2.Length)/Math.Max(s1.Length, s2.Length)) <=
+                                   SectionResemblanceThreshold;
+                    SectionDiff d = null;
+                    if (resemble)
                     {
+                        d = Compare(dmp, s1, s2);
+                        var removedRatio = (float) d.RemovedChars/s1.Length;
+                        var addedRatio = (float) d.RemovedChars/s2.Length;
+                        if (addedRatio >= SectionResemblanceThreshold || removedRatio >= SectionResemblanceThreshold)
+                            resemble = false;
+                    }
+                    if (resemble)
+                    {
+                        Debug.Assert(d != null);
                         // We assume the section has been renamed.
                         diffs.Add(d);
                         i1++;
